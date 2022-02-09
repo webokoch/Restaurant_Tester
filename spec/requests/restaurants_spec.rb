@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Restaurants", type: :request do
+
   describe "GET /index" do
-    
     before { get restaurants_path }
 
     it 'requests restaurants#index' do
-      expect(assigns(:restaurants)).to eq(Restaurants.all)
+      expect(assigns(:restaurants)).to eq(Restaurant.all)
     end
     
     it 'renders index template' do
