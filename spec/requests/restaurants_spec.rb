@@ -61,7 +61,7 @@ RSpec.describe 'Restaurants', type: :request do
       end
     end
 
-    context 'with invalid atrributes' do
+    context 'with invalid attributes' do
       it 'does not create a new restaurant' do
         expect do
           post restaurants_path, params: {restaurant: invalid_attributes}
@@ -70,6 +70,42 @@ RSpec.describe 'Restaurants', type: :request do
 
       it 'redirects to new restaurant view' do
         post restaurants_path, params: {restaurant: invalid_attributes}
+        expect(response).to be_successful
+      end
+    end
+  end
+
+  describe 'PATCH /update' do
+    context 'with valid attributes' do
+      let(:new_attributes) do
+        {
+          name: 'YumYum',
+          cuisine: 'South Korean',
+          location: 'Mitte'
+        }
+      end
+
+      it 'updates the requested restaurant' do
+        restaurant = Restaurant.new(valid_attributes)
+        restaurant.save
+        patch restaurant_path(restaurant), params: { restaurant: new_attributes }
+        restaurant.relaod
+        expect(restaurant.cusine).to eq("South Korean")
+      end
+
+      it 'redirects to the updated restaurant' do
+        restaurant = Restaurant.new(valid_attributes)
+        restaurant.save
+        patch restaurant_path(restaurant), params: { restaurant: new_attributes }
+        restaurant.relaod
+        expect(response).to redirect_to(restaurant_path(restaurant))
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'redirects to the edit template' do
+        restaurant = Restaurant.create! valid_attributes
+        patch restaurant_path(restaurant), params: { restaurant: invalid_attributes }
         expect(response).to be_successful
       end
     end
