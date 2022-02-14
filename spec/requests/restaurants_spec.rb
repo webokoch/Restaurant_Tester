@@ -111,5 +111,20 @@ RSpec.describe 'Restaurants', type: :request do
     end
   end
 
+  describe 'DELETE /destroy' do
+    it 'destroys the requested restaurant' do 
+      restaurant = Restaurant.new(valid_attributes)
+      restaurant.save
+      expect do
+        delete restaurant_path(restaurant)
+      end.to change(Restaurant, :count).by(-1)
+    end
 
+    it 'redirects to the restaurant index' do
+      restaurant = Restaurant.new(valid_attributes)
+      restaurant.save
+      delete restaurant_path(restaurant)
+      expect(response).to redirect_to(restaurants_path)
+    end
+  end
 end
