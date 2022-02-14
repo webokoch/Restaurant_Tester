@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :find_restaurant, only: :show
+  before_action :find_restaurant, only: [:show, :edit, :update]
 
   def index
     @restaurants = Restaurant.all
@@ -18,6 +18,17 @@ class RestaurantsController < ApplicationController
       redirect_to restaurant_path(@restaurant)
     else 
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
     end
   end
 

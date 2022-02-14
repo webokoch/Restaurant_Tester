@@ -89,15 +89,15 @@ RSpec.describe 'Restaurants', type: :request do
         restaurant = Restaurant.new(valid_attributes)
         restaurant.save
         patch restaurant_path(restaurant), params: { restaurant: new_attributes }
-        restaurant.relaod
-        expect(restaurant.cusine).to eq("South Korean")
+        restaurant.reload
+        expect(restaurant.cuisine).to eq("South Korean")
       end
 
       it 'redirects to the updated restaurant' do
         restaurant = Restaurant.new(valid_attributes)
         restaurant.save
         patch restaurant_path(restaurant), params: { restaurant: new_attributes }
-        restaurant.relaod
+        restaurant.reload
         expect(response).to redirect_to(restaurant_path(restaurant))
       end
     end
