@@ -17,47 +17,55 @@ r1 = Restaurant.new(
     cuisine: 'Korean',
     location: 'Mitte'
 )
+r1.save
 
 r2 = Restaurant.new(
     name: 'Coffee Table',
     cuisine: 'American',
     location: 'Mitte'
 )
+r2.save
 
 r3 = Restaurant.new(
     name: 'Burger Town',
     cuisine: 'American',
     location: 'Kreuzberg'
 )
+r3.save
 
 r4 = Restaurant.new(
     name: 'Golden Palace',
     cuisine: 'Chinese',
     location: 'Mitte'
 )
+r4.save
 
 r5 = Restaurant.new(
     name: 'Sushi & Ramen',
     cuisine: 'Japanese',
     location: 'Kreuzberg'
 )
+r5.save
 
 r6 = Restaurant.new(
     name: 'Napoli',
     cuisine: 'Italian',
     location: 'Friedrichshain'
 )
+r6.save
 
 r7 = Restaurant.new(
     name: 'Kebap King',
     cuisine: 'Turkish',
     location: 'Kreuzberg'
 )
+r7.save
 
 r8 = Restaurant.new(
     name: 'Babylon',
     cuisine: 'Mediterranean',
     location: 'Friedrichshain'
 )
+r8.save
 
 puts 'Done...'

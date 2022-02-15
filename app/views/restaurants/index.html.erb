@@ -1,2 +1,14 @@
-<h1>  Berlin Restaurant Guide  </h1>
 
+<h1>Berlin Restaurant Guide</h1>
+
+<section class="cards">
+    <% @restaurants.each do |restaurant| %>
+        <div class="card">
+            <%= link_to restaurant_path(restaurant) do %>
+                <h2> <%= restaurant.name %> </h2>
+                <h3> <%= restaurant.cuisine %> </h3>
+                <p> <%= restaurant.location %> </p> 
+            <% end %>
+        </div>
+    <% end %>
+</section>
