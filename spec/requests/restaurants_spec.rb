@@ -25,7 +25,7 @@ RSpec.describe 'Restaurants', type: :request do
     end
     
     it 'renders index template' do
-      expect(response).to render_template('index')
+      expect(response).to render_template(:index)
     end
   end
 
@@ -34,14 +34,14 @@ RSpec.describe 'Restaurants', type: :request do
       restaurant = Restaurant.new(valid_attributes)
       restaurant.save
       get restaurant_path(restaurant)
-      expect(response).to render_template :show
+      expect(response).to render_template(:show)
     end
   end
 
   describe 'GET /new' do
     it 'should get the restaurants new form' do
       get new_restaurant_path
-      expect(response).to be_successful
+      expect(response).to render_template(:new)
     end
   end
 
@@ -70,7 +70,7 @@ RSpec.describe 'Restaurants', type: :request do
 
       it 'redirects to new restaurant view' do
         post restaurants_path, params: {restaurant: invalid_attributes}
-        expect(response).to be_successful
+        expect(response).to render_template(:new)
       end
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe 'Restaurants', type: :request do
       it 'redirects to the edit template' do
         restaurant = Restaurant.create! valid_attributes
         patch restaurant_path(restaurant), params: { restaurant: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to render_template(:edit)
       end
     end
   end
